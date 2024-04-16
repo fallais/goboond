@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"time"
 )
 
 type CandidatesMeta struct {
@@ -19,8 +18,8 @@ type CandidatesMeta struct {
 }
 
 type CandidatesAttributes struct {
-	CreationDate               time.Time                 `json:"creationDate"`
-	UpdateDate                 time.Time                 `json:"updateDate"`
+	CreationDate               string                    `json:"creationDate"`
+	UpdateDate                 string                    `json:"updateDate"`
 	Civility                   int                       `json:"civility"`
 	Thumbnail                  string                    `json:"thumbnail"`
 	FirstName                  string                    `json:"firstName"`
