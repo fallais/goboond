@@ -1,4 +1,4 @@
-module goboond
+module github.com/fallais/goboond
 
 go 1.21.0
 
