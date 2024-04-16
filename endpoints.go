@@ -2,6 +2,9 @@ package goboond
 
 import (
 	"context"
+
+	"github.com/fallais/goboond/responses/candidates"
+	"github.com/fallais/goboond/responses/resources"
 )
 
 //------------------------------------------------------------------------------
@@ -19,7 +22,7 @@ type Endpoint struct {
 
 // Candidates endpoint.
 type Candidates interface {
-	ListCandidates(context.Context, string) (*ListCandidatesResponse, error)
+	ListCandidates(context.Context, string) (*candidates.ListCandidatesResponse, error)
 }
 
 // Projects endpoint.
@@ -29,6 +32,6 @@ type Projects interface {
 
 // Resources endpoint.
 type Resources interface {
-	ListResources(context.Context, string) (*ResourcesPaginatedResponse, error)
-	GetResource(context.Context, string) (*ResourceResponse, error)
+	ListResources(context.Context, string) (*resources.ListResourcesResponse, error)
+	GetResource(context.Context, string) (*resources.GetResourceResponse, error)
 }
