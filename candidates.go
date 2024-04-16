@@ -122,7 +122,7 @@ type CandidatesRelationshipData struct {
 	Data Data `json:"data"`
 }
 
-type CandidatesResponse struct {
+type ListCandidatesResponse struct {
 	Meta     Meta             `json:"meta"`
 	Data     []CandidatesData `json:"data"`
 	Included []CandidatesData `json:"included"`
@@ -133,7 +133,7 @@ type CandidatesResponse struct {
 //------------------------------------------------------------------------------
 
 // ListCandidates returns the list of the candidates.
-func (endpoint *Endpoint) ListCandidates(ctx context.Context, candidateStates string) (*CandidatesResponse, error) {
+func (endpoint *Endpoint) ListCandidates(ctx context.Context, candidateStates string) (*ListCandidatesResponse, error) {
 	// Options
 	options := []Option{}
 	if candidateStates != "" {
@@ -151,7 +151,7 @@ func (endpoint *Endpoint) ListCandidates(ctx context.Context, candidateStates st
 	}
 
 	// Prepare the response
-	var response *CandidatesResponse
+	var response *ListCandidatesResponse
 
 	// Decode the response
 	err = json.NewDecoder(resp.Body).Decode(&response)

@@ -19,7 +19,7 @@ type Endpoint struct {
 
 // Candidates endpoint.
 type Candidates interface {
-	//ListCandidates(context.Context, string, string, string, int, int) (*ProjectsPaginatedResponse, error)
+	ListCandidates(context.Context, string) (*ListCandidatesResponse, error)
 }
 
 // Projects endpoint.
