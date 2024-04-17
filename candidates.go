@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/fallais/goboond/responses/candidates"
 )
@@ -44,9 +45,15 @@ func (endpoint *Endpoint) ListCandidates(ctx context.Context, candidateStates st
 }
 
 // ListActions returns the list of the actions for a candidate.
-func (endpoint *Endpoint) ListActions(ctx context.Context, candidateID string) (*candidates.ListActionsResponse, error) {
+func (endpoint *Endpoint) ListActions(ctx context.Context, candidateID string, maxResults, page int) (*candidates.ListActionsResponse, error) {
 	// Options
 	options := []Option{}
+	if maxResults != 0 {
+		options = append(options, WithParam("maxResults", strconv.Itoa(maxResults)))
+	}
+	if page != 0 {
+		options = append(options, WithParam("page", strconv.Itoa(page)))
+	}
 
 	// Do the request
 	resp, err := endpoint.client.do(ctx, http.MethodGet, "/candidates/"+candidateID+"/actions", options...)
