@@ -22,7 +22,7 @@ type Endpoint struct {
 
 // Candidates endpoint.
 type Candidates interface {
-	ListCandidates(context.Context, string) (*candidates.ListCandidatesResponse, error)
+	ListCandidates(context.Context, string, int, int) (*candidates.ListCandidatesResponse, error)
 	ListActions(context.Context, string, int, int) (*candidates.ListActionsResponse, error)
 }
 

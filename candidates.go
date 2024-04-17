@@ -15,11 +15,17 @@ import (
 //------------------------------------------------------------------------------
 
 // ListCandidates returns the list of the candidates.
-func (endpoint *Endpoint) ListCandidates(ctx context.Context, candidateStates string) (*candidates.ListCandidatesResponse, error) {
+func (endpoint *Endpoint) ListCandidates(ctx context.Context, candidateStates string, maxResults, page int) (*candidates.ListCandidatesResponse, error) {
 	// Options
 	options := []Option{}
 	if candidateStates != "" {
 		options = append(options, WithParam("candidateStates", candidateStates))
+	}
+	if maxResults != 0 {
+		options = append(options, WithParam("maxResults", strconv.Itoa(maxResults)))
+	}
+	if page != 0 {
+		options = append(options, WithParam("page", strconv.Itoa(page)))
 	}
 
 	// Do the request
