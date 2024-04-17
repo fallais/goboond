@@ -4,9 +4,12 @@ type ListCandidatesResponse struct {
 	Meta Meta    `json:"meta"`
 	Data []Data1 `json:"data"`
 }
+
 type Totals struct {
-	Rows int `json:"rows"`
+	Rows  int   `json:"rows"`
+	Types []any `json:"types"`
 }
+
 type Meta struct {
 	Totals            Totals `json:"totals"`
 	Solr              bool   `json:"solr"`
@@ -18,6 +21,7 @@ type Meta struct {
 	Timestamp         int64  `json:"timestamp"`
 	Customer          string `json:"customer"`
 }
+
 type Source struct {
 	TypeOf int    `json:"typeOf"`
 	Detail string `json:"detail"`

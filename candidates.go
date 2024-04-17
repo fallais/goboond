@@ -42,3 +42,30 @@ func (endpoint *Endpoint) ListCandidates(ctx context.Context, candidateStates st
 
 	return response, nil
 }
+
+// ListActions returns the list of the actions for a candidate.
+func (endpoint *Endpoint) ListActions(ctx context.Context, candidateID string) (*candidates.ListActionsResponse, error) {
+	// Options
+	options := []Option{}
+
+	// Do the request
+	resp, err := endpoint.client.do(ctx, http.MethodGet, "/candidates/"+candidateID+"/actions", options...)
+	if err != nil {
+		return nil, fmt.Errorf("error while calling the endpoint: %s", err)
+	}
+
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("error with the status code: %d", resp.StatusCode)
+	}
+
+	// Prepare the response
+	var response *candidates.ListActionsResponse
+
+	// Decode the response
+	err = json.NewDecoder(resp.Body).Decode(&response)
+	if err != nil {
+		return nil, fmt.Errorf("error while decoding the response: %s", err)
+	}
+
+	return response, nil
+}
