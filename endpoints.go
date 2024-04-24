@@ -24,6 +24,7 @@ type Endpoint struct {
 type Candidates interface {
 	ListCandidates(context.Context, string, int, int) (*candidates.ListCandidatesResponse, error)
 	ListActions(context.Context, string, int, int) (*candidates.ListActionsResponse, error)
+	GetInformation(context.Context, string, int, int) (*candidates.GetInformationResponse, error)
 }
 
 // Projects endpoint.
