@@ -37,7 +37,7 @@ type Attributes struct {
 	Skills                        string      `json:"skills"`
 	MobilityAreas                 []string    `json:"mobilityAreas"`
 	Title                         string      `json:"title"`
-	Availability                  string      `json:"availability"`
+	Availability                  int         `json:"availability"`
 	AverageDailyPriceExcludingTax int         `json:"averageDailyPriceExcludingTax"`
 	Email1                        string      `json:"email1"`
 	Email2                        string      `json:"email2"`
