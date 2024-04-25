@@ -1,5 +1,7 @@
 package candidates
 
+import "encoding/json"
+
 type ListCandidatesResponse struct {
 	Meta Meta    `json:"meta"`
 	Data []Data1 `json:"data"`
@@ -40,7 +42,7 @@ type Attributes struct {
 	TypeOf                     int              `json:"typeOf"`
 	IsVisible                  bool             `json:"isVisible"`
 	Thumbnail                  string           `json:"thumbnail"`
-	Availability               int              `json:"availability"`
+	Availability               json.Number      `json:"availability"`
 	Skills                     string           `json:"skills"`
 	Diplomas                   []any            `json:"diplomas"`
 	MobilityAreas              []string         `json:"mobilityAreas"`

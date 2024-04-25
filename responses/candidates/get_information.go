@@ -1,5 +1,7 @@
 package candidates
 
+import "encoding/json"
+
 type GetInformationResponse struct {
 	Meta struct {
 		Version           string `json:"version"`
@@ -42,14 +44,14 @@ type GetInformationResponse struct {
 				TypeOf int    `json:"typeOf"`
 				Detail string `json:"detail"`
 			} `json:"source"`
-			DateOfBirth                string `json:"dateOfBirth"`
-			MobilityAreas              []any  `json:"mobilityAreas"`
-			GlobalEvaluation           string `json:"globalEvaluation"`
-			Evaluations                []any  `json:"evaluations"`
-			Availability               int    `json:"availability"`
-			Thumbnail                  string `json:"thumbnail"`
-			NumberOfActivePositionings int    `json:"numberOfActivePositionings"`
-			InformationComments        string `json:"informationComments"`
+			DateOfBirth                string      `json:"dateOfBirth"`
+			MobilityAreas              []any       `json:"mobilityAreas"`
+			GlobalEvaluation           string      `json:"globalEvaluation"`
+			Evaluations                []any       `json:"evaluations"`
+			Availability               json.Number `json:"availability"`
+			Thumbnail                  string      `json:"thumbnail"`
+			NumberOfActivePositionings int         `json:"numberOfActivePositionings"`
+			InformationComments        string      `json:"informationComments"`
 			SocialNetworks             []struct {
 				Network string `json:"network"`
 				URL     string `json:"url"`
