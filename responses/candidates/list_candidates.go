@@ -42,7 +42,7 @@ type Attributes struct {
 	TypeOf                     int              `json:"typeOf"`
 	IsVisible                  bool             `json:"isVisible"`
 	Thumbnail                  string           `json:"thumbnail"`
-	Availability               json.Number      `json:"availability"`
+	Availability               json.RawMessage  `json:"availability"`
 	Skills                     string           `json:"skills"`
 	Diplomas                   []any            `json:"diplomas"`
 	MobilityAreas              []string         `json:"mobilityAreas"`
