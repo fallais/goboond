@@ -50,8 +50,8 @@ func (endpoint *Endpoint) ListCandidates(ctx context.Context, candidateStates st
 	return response, nil
 }
 
-// ListActions returns the list of the actions for a candidate.
-func (endpoint *Endpoint) ListActions(ctx context.Context, candidateID string, maxResults, page int) (*candidates.ListActionsResponse, error) {
+// ListCandidatesActions returns the list of the actions for a candidate.
+func (endpoint *Endpoint) ListCandidatesActions(ctx context.Context, candidateID string, maxResults, page int) (*candidates.ListActionsResponse, error) {
 	// Options
 	options := []Option{}
 	if maxResults != 0 {

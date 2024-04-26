@@ -30,6 +30,7 @@ type Client struct {
 	Projects   Projects
 	Resources  Resources
 	Candidates Candidates
+	Actions    Actions
 }
 
 //------------------------------------------------------------------------------
@@ -56,6 +57,7 @@ func NewClient(httpClient *http.Client, baseURL, userToken, clientToken, clientK
 	}
 
 	// Add the endpoints
+	c.Actions = &Endpoint{client: c}
 	c.Candidates = &Endpoint{client: c}
 	c.Projects = &Endpoint{client: c}
 	c.Resources = &Endpoint{client: c}

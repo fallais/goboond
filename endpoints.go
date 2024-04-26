@@ -3,6 +3,7 @@ package goboond
 import (
 	"context"
 
+	"github.com/fallais/goboond/responses/actions"
 	"github.com/fallais/goboond/responses/candidates"
 	"github.com/fallais/goboond/responses/resources"
 )
@@ -20,10 +21,15 @@ type Endpoint struct {
 // Interfaces
 //------------------------------------------------------------------------------
 
+// Actions endpoint.
+type Actions interface {
+	ListActions(context.Context, string, int, int) (*actions.ListActionsResponse, error)
+}
+
 // Candidates endpoint.
 type Candidates interface {
 	ListCandidates(context.Context, string, int, int) (*candidates.ListCandidatesResponse, error)
-	ListActions(context.Context, string, int, int) (*candidates.ListActionsResponse, error)
+	ListCandidatesActions(context.Context, string, int, int) (*candidates.ListActionsResponse, error)
 	GetInformation(context.Context, string, int, int) (*candidates.GetInformationResponse, error)
 }
 
