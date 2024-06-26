@@ -1,7 +1,5 @@
 package resources
 
-import "encoding/json"
-
 // ResourcesPaginatedResponse is the paginated response.
 type ListResourcesResponse struct {
 	Meta Meta   `json:"meta"`
@@ -39,7 +37,7 @@ type Attributes struct {
 	Skills                        string      `json:"skills"`
 	MobilityAreas                 []string    `json:"mobilityAreas"`
 	Title                         string      `json:"title"`
-	Availability                  json.Number `json:"availability"`
+	Availability                  string      `json:"availability"`
 	AverageDailyPriceExcludingTax int         `json:"averageDailyPriceExcludingTax"`
 	Email1                        string      `json:"email1"`
 	Email2                        string      `json:"email2"`
