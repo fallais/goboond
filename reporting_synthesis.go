@@ -16,15 +16,15 @@ import (
 //------------------------------------------------------------------------------
 
 // SearchSynthesisReporting.
-func (endpoint *Endpoint) SearchSynthesisReporting(ctx context.Context) (*reportingsynthesis.SearchSynthesisReportingResponse, error) {
+func (endpoint *Endpoint) SearchSynthesisReporting(ctx context.Context, startDate, endDate string) (*reportingsynthesis.SearchSynthesisReportingResponse, error) {
 	// Options
 	options := []Option{}
-	/* 	if resourceStates != "" {
-	   		options = append(options, WithParam("resourceStates", resourceStates))
-	   	}
-	   	if resourceTypes != "" {
-	   		options = append(options, WithParam("resourceTypes", resourceTypes))
-	   	} */
+	if startDate != "" {
+		options = append(options, WithParam("startDate", startDate))
+	}
+	if endDate != "" {
+		options = append(options, WithParam("endDate", endDate))
+	}
 
 	// Do the request
 	resp, err := endpoint.client.do(ctx, http.MethodGet, "/reporting-synthesis", options...)

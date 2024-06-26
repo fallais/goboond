@@ -47,5 +47,5 @@ type Resources interface {
 
 // Reporting synthesis
 type ReportingSynthesis interface {
-	SearchSynthesisReporting(context.Context) (*reportingsynthesis.SearchSynthesisReportingResponse, error)
+	SearchSynthesisReporting(context.Context, string, string) (*reportingsynthesis.SearchSynthesisReportingResponse, error)
 }
