@@ -23,7 +23,7 @@ type Endpoint struct {
 
 // Actions endpoint.
 type Actions interface {
-	ListActions(context.Context, string, int, int) (*actions.ListActionsResponse, error)
+	ListActions(context.Context, string, string, int, int) (*actions.ListActionsResponse, error)
 }
 
 // Candidates endpoint.
