@@ -5,6 +5,7 @@ import (
 
 	"github.com/fallais/goboond/responses/actions"
 	"github.com/fallais/goboond/responses/candidates"
+	reportingsynthesis "github.com/fallais/goboond/responses/reporting_synthesis"
 	"github.com/fallais/goboond/responses/resources"
 )
 
@@ -42,4 +43,9 @@ type Projects interface {
 type Resources interface {
 	ListResources(context.Context, string, string) (*resources.ListResourcesResponse, error)
 	GetResource(context.Context, string) (*resources.GetResourceResponse, error)
+}
+
+// Reporting synthesis
+type ReportingSynthesis interface {
+	SearchSynthesisReporting(context.Context) (*reportingsynthesis.SearchSynthesisReportingResponse, error)
 }
