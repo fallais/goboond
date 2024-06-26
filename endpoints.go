@@ -40,6 +40,6 @@ type Projects interface {
 
 // Resources endpoint.
 type Resources interface {
-	ListResources(context.Context, string) (*resources.ListResourcesResponse, error)
+	ListResources(context.Context, string, string) (*resources.ListResourcesResponse, error)
 	GetResource(context.Context, string) (*resources.GetResourceResponse, error)
 }

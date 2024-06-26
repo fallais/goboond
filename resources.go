@@ -14,11 +14,14 @@ import (
 //------------------------------------------------------------------------------
 
 // ListResources returns the list of the resources.
-func (endpoint *Endpoint) ListResources(ctx context.Context, resourceStates string) (*resources.ListResourcesResponse, error) {
+func (endpoint *Endpoint) ListResources(ctx context.Context, resourceStates, resourceTypes string) (*resources.ListResourcesResponse, error) {
 	// Options
 	options := []Option{}
 	if resourceStates != "" {
 		options = append(options, WithParam("resourceStates", resourceStates))
+	}
+	if resourceTypes != "" {
+		options = append(options, WithParam("resourceTypes", resourceTypes))
 	}
 
 	// Do the request
