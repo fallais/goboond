@@ -11,11 +11,14 @@ import (
 )
 
 // ListActions returns the list of the actions for a candidate.
-func (endpoint *Endpoint) ListActions(ctx context.Context, actionTypes, periodDynamic string, maxResults, page int) (*actions.ListActionsResponse, error) {
+func (endpoint *Endpoint) ListActions(ctx context.Context, actionTypes, period, periodDynamic string, maxResults, page int) (*actions.ListActionsResponse, error) {
 	// Options
 	options := []Option{}
 	if actionTypes != "" {
 		options = append(options, WithParam("actionTypes", actionTypes))
+	}
+	if period != "" {
+		options = append(options, WithParam("period", period))
 	}
 	if periodDynamic != "" {
 		options = append(options, WithParam("periodDynamic", periodDynamic))
