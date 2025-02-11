@@ -29,7 +29,7 @@ func (endpoint *Endpoint) ListCandidates(ctx context.Context, candidateStates st
 	}
 
 	// Do the request
-	resp, err := endpoint.client.do(ctx, http.MethodGet, "/candidates", options...)
+	resp, err := endpoint.client.do(ctx, http.MethodGet, "/candidates", nil, options...)
 	if err != nil {
 		return nil, fmt.Errorf("error while calling the endpoint: %s", err)
 	}
@@ -62,7 +62,7 @@ func (endpoint *Endpoint) ListCandidatesActions(ctx context.Context, candidateID
 	}
 
 	// Do the request
-	resp, err := endpoint.client.do(ctx, http.MethodGet, "/candidates/"+candidateID+"/actions", options...)
+	resp, err := endpoint.client.do(ctx, http.MethodGet, "/candidates/"+candidateID+"/actions", nil, options...)
 	if err != nil {
 		return nil, fmt.Errorf("error while calling the endpoint: %s", err)
 	}
@@ -95,7 +95,7 @@ func (endpoint *Endpoint) GetInformation(ctx context.Context, candidateID string
 	}
 
 	// Do the request
-	resp, err := endpoint.client.do(ctx, http.MethodGet, "/candidates/"+candidateID+"/information", options...)
+	resp, err := endpoint.client.do(ctx, http.MethodGet, "/candidates/"+candidateID+"/information", nil, options...)
 	if err != nil {
 		return nil, fmt.Errorf("error while calling the endpoint: %s", err)
 	}

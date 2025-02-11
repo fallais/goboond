@@ -1,4 +1,4 @@
-package actions
+package goboond
 
 type ListActionsResponse struct {
 	Meta struct {

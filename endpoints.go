@@ -3,10 +3,7 @@ package goboond
 import (
 	"context"
 
-	"github.com/fallais/goboond/responses/actions"
 	"github.com/fallais/goboond/responses/candidates"
-	reportingsynthesis "github.com/fallais/goboond/responses/reporting_synthesis"
-	"github.com/fallais/goboond/responses/resources"
 )
 
 //------------------------------------------------------------------------------
@@ -24,7 +21,7 @@ type Endpoint struct {
 
 // Actions endpoint.
 type Actions interface {
-	ListActions(context.Context, string, string, string, int, int) (*actions.ListActionsResponse, error)
+	ListActions(context.Context, ListActionsRequest) (*ListActionsResponse, error)
 }
 
 // Candidates endpoint.
@@ -34,6 +31,11 @@ type Candidates interface {
 	GetInformation(context.Context, string, int, int) (*candidates.GetInformationResponse, error)
 }
 
+// Positionings endpoint.
+type Positionings interface {
+	SearchPositionings(context.Context, SearchPositioningsRequest) (*SearchPositioningsResponse, error)
+}
+
 // Projects endpoint.
 type Projects interface {
 	//ListProjects(context.Context, string, string, string, int, int) (*ProjectsPaginatedResponse, error)
@@ -41,11 +43,21 @@ type Projects interface {
 
 // Resources endpoint.
 type Resources interface {
-	ListResources(context.Context, string, string) (*resources.ListResourcesResponse, error)
-	GetResource(context.Context, string) (*resources.GetResourceResponse, error)
+	ListResources(context.Context, ListResourcesRequest) (*ListResourcesResponse, error)
+	GetResource(context.Context, string) (*GetResourceResponse, error)
 }
 
 // Reporting synthesis
 type ReportingSynthesis interface {
-	SearchSynthesisReporting(context.Context, string, string) (*reportingsynthesis.SearchSynthesisReportingResponse, error)
+	SearchSynthesisReporting(context.Context, SearchSynthesisReportingRequest) (*SearchSynthesisReportingResponse, error)
+}
+
+// Contacts endpoint.
+type Contacts interface {
+	ListContacts(context.Context, ListContactsRequest) (*ListContactsResponse, error)
+}
+
+// Companies endpoint.
+type Companies interface {
+	ListCompanies(context.Context, ListCompaniesRequest) (*ListCompaniesResponse, error)
 }

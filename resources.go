@@ -5,27 +5,38 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-
-	"github.com/fallais/goboond/responses/resources"
 )
+
+type ListResourcesRequest struct {
+	ResourceStates []int
+	ResourceTypes  []int
+
+	SearchOptions
+}
 
 //------------------------------------------------------------------------------
 // Functions
 //------------------------------------------------------------------------------
 
 // ListResources returns the list of the resources.
-func (endpoint *Endpoint) ListResources(ctx context.Context, resourceStates, resourceTypes string) (*resources.ListResourcesResponse, error) {
+func (endpoint *Endpoint) ListResources(ctx context.Context, r ListResourcesRequest) (*ListResourcesResponse, error) {
 	// Options
 	options := []Option{}
-	if resourceStates != "" {
-		options = append(options, WithParam("resourceStates", resourceStates))
+	if r.ResourceStates != nil {
+		options = append(options, WithParam("resourceStates", formatIntArray(r.ResourceStates)))
 	}
-	if resourceTypes != "" {
-		options = append(options, WithParam("resourceTypes", resourceTypes))
+	if r.ResourceTypes != nil {
+		options = append(options, WithParam("resourceTypes", formatIntArray(r.ResourceTypes)))
+	}
+	if r.MaxResults != 0 {
+		options = append(options, WithParam("maxResults", fmt.Sprintf("%d", r.MaxResults)))
+	}
+	if r.Page != 0 {
+		options = append(options, WithParam("page", fmt.Sprintf("%d", r.Page)))
 	}
 
 	// Do the request
-	resp, err := endpoint.client.do(ctx, http.MethodGet, "/resources", options...)
+	resp, err := endpoint.client.do(ctx, http.MethodGet, "/resources", nil, options...)
 	if err != nil {
 		return nil, fmt.Errorf("error while calling the endpoint: %s", err)
 	}
@@ -35,7 +46,7 @@ func (endpoint *Endpoint) ListResources(ctx context.Context, resourceStates, res
 	}
 
 	// Prepare the response
-	var response *resources.ListResourcesResponse
+	var response *ListResourcesResponse
 
 	// Decode the response
 	err = json.NewDecoder(resp.Body).Decode(&response)
@@ -47,9 +58,9 @@ func (endpoint *Endpoint) ListResources(ctx context.Context, resourceStates, res
 }
 
 // ListResources returns the list of the resources.
-func (endpoint *Endpoint) GetResource(ctx context.Context, id string) (*resources.GetResourceResponse, error) {
+func (endpoint *Endpoint) GetResource(ctx context.Context, id string) (*GetResourceResponse, error) {
 	// Do the request
-	resp, err := endpoint.client.do(ctx, http.MethodGet, "/resources/"+id)
+	resp, err := endpoint.client.do(ctx, http.MethodGet, "/resources/"+id, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error while calling the endpoint: %s", err)
 	}
@@ -59,7 +70,7 @@ func (endpoint *Endpoint) GetResource(ctx context.Context, id string) (*resource
 	}
 
 	// Prepare the response
-	var response *resources.GetResourceResponse
+	var response *GetResourceResponse
 
 	// Decode the response
 	err = json.NewDecoder(resp.Body).Decode(&response)
